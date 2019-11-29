@@ -1,0 +1,221 @@
+
+
+		function open__(e){
+			var temp2;
+			var table_ = ""; var table = ""; var table_caption = ""; var table_son = ""; var table_caption_list = ""; var table_aba_son = ""; var table_fields_father = "";	var table_fields_son = "";
+
+			var temp1 = $("#" + e.id +  " + span").text();
+			temp1 = temp1.replace(/\s/g, "")
+			temp1 = temp1.split(",");
+
+			for( var i = 0; i < temp1.length ; i++ ){
+				temp2 = temp1[i].split(":");
+				if( temp2[0]                                 == "table_")              { table_ = temp2[1]; table = temp2[1]; }
+				if( temp2[0]								 == "table_caption")       { table_caption 		 = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_son")           { table_son           = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_caption_list" ) { table_caption_list  = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_aba_son" )      { table_aba_son       = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_fields_father" ){ table_fields_father = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_fields_son" )   { table_fields_son    = temp2[1]; }
+
+				/* Se for uma tabela ou
+				   Se todos campos da tabela filha estiver carregados ( verifico o ultimo parametro table_fields_son)
+				   Gera um grid da tabela 
+				*/
+			
+				if( table_caption != "" || table_fields_son != ""){
+
+					/* Cria tab para tabelas filhas  + table_son + "_'"*/
+					if(table_fields_son != ""){
+	            		html  = "<li class=nav-item'>";
+	                	html += "	<a id='" + table_son + "-tab' href='#' onclick=\"sel_tab('#" + table_son + "', '#" + table_son + "-tab');\" class='nav-link'>" + table_aba_son + "</a>";
+	            		html += "</li>";
+	            		$("#myTab .nav-item").filter(":last").after( html );
+
+					    html  = "<div class='tab-pane fade p-3' id='" + table_son + "_' role='tabpanel' >";
+					    html += "	<div id='" + table_son + "' ></div>";
+					    html += "</div>";
+					    $("#two" ).filter(":last").after( html );
+					}
+					
+					create_table_grid( table_, table_caption, table_son, table_caption_list, table_aba_son, table_fields_father, table_fields_son );
+					
+					table_ = ""; 
+					table_caption = ""; 
+					table_son = ""; 
+					table_caption_list = ""; 
+					table_aba_son = ""; 
+					table_fields_father = ""; 
+					table_fields_son = "";
+				}
+
+			}
+			
+			if( table != "" ){
+				$("#container-fluid").css("display", "block");
+			    load_dados_form  ( table );
+			    load_dados_filter( table );
+
+			    $( "#one-tab" ).tab('show');	
+			}
+
+		}
+
+
+
+			/* se for uma tabela filha, atualiza variveis gerais */ 
+			if(table_son!=""){
+				table = table_son;
+				table_caption = table_caption_list;	
+				page_find = -1;
+
+				$temp = createtab_( table );
+				$("#" + table_son + "_" ).after( $temp );
+			}else{
+
+
+
+
+		/*
+		var load_dados_table = function( ) {
+
+			var temp1;
+			var temp2;
+			var table_son = "";
+			var table_caption_list = "";
+			var table_aba_son = "";
+			var table_fields_father = "";
+			var table_fields_son = "";
+			
+			temp1 = window.localStorage.getItem("___tables");
+			temp1 = temp1.split(",");
+
+			for( var i = 0; i < temp1.length ; i++ ){
+				temp2 = temp1[i].split(":");
+				if( temp2[0] == "table_")              { var table_ 			 = temp2[1]; }
+				if( temp2[0] == "table_caption")       { var table_caption 		 = temp2[1]; }
+				if( temp2[0] == "table_son")           { var table_son           = temp2[1]; }
+				if( temp2[0] == "table_caption_list" ) { var table_caption_list  = temp2[1]; }
+				if( temp2[0] == "table_aba_son" )      { var table_aba_son       = temp2[1]; }
+				if( temp2[0] == "table_fields_father" ){ var table_fields_father = temp2[1]; }
+				if( temp2[0] == "table_fields_son" )   { var table_fields_son    = temp2[1]; }
+
+				/* Se for uma tabela ou
+				   Se todos campos da tabela filha estiver carregados ( verifico o ultimo parametro table_fields_son)
+				   Gera um grid da tabela 
+				*/
+/*				
+				if( table_ != "" || table_fields_son != ""){
+					create_table_grid( table_, table_caption, table_son, table_caption_list, table_aba_son, table_fields_father, table_fields_son );
+					table_ = ""; 
+					table_caption = ""; 
+					table_son = ""; 
+					table_caption_list = ""; 
+					table_aba_son = ""; 
+					table_fields_father = ""; 
+					table_fields_son = "";
+				}
+
+			}
+		}
+*/
+
+
+
+	foreach( $struct as $field ){    
+
+		if (array_key_exists("grid", $field)) {
+
+			//if( substr($field['Field'],0,3) == 'id_'){
+			if( array_key_exists("table_ext", $field) ){
+
+
+				//if( strpos($field['Field'], 'id') > 0 ){
+
+					//if (array_key_exists("grid", $field)) {	
+					
+					/* Se foi declado a tabela segundaria, pega o nomes do campos no array $struct */
+					//if( array_key_exists("table_ext", $field) ){
+
+						$tables .= " LEFT JOIN ";
+
+						/* pega o nome da tabela para fazer o relacionamento com a tabela pai */
+						$tables .= $field['table_ext'].' '.chr($chr). ' ';
+
+						/* se existir um campo a ser mostrado, coloca nos campos a ser mostrado na consulta */
+						if( array_key_exists("show_ext", $field) ){
+							/* cria um array com as colunas */
+							$show_exts = split( ',', $field['show_ext']);
+							//$x = "";
+							//$x .= chr($chr).".{$show_ext_temp} + ";
+							//var_dump();
+							if(count($show_exts) > 0){
+								$fields .= " CONCAT("; 	
+							}
+							
+							foreach($show_exts as $show_ext){
+								/* junda os campos em um, para mostrar em uma coluna do grid */
+								$show_ext_temp = trim($show_ext);
+								$fields .= chr($chr).".{$show_ext_temp},";
+								$fields .= "' - ',";
+							}
+							/* tira o mais do final da string */
+							$fields = substr($fields, 0, -7);	
+
+							if(count($show_exts) > 0){
+								$fields .= ")"; 	
+							}
+
+							$show_ext_temp = trim($show_exts[0]);
+
+							$fields .= " {$field['table_ext']}_{$show_ext_temp},";	
+
+							/* Adiciona os campos que ficaram visivel no grid */
+							array_push( $show_fields_grid, "{$field['table_ext']}_{$show_ext_temp}");	
+
+						}
+					}else{
+
+						/* se não foi declarado, tenta pegar os campos da tabela declarada no id do campos */	
+						$table_exist = substr($field['Field'],3);
+						
+						/* Pega a strutura da tabela viculada ao id_ */					
+						$struct_exist = $db->query("SHOW TABLES LIKE '{$table_exist}'" )->rowCount();
+						if( $struct_exist > 0){
+							/* Se acho a tabela no banco de dados, pega as colunas */
+							$sql = "SHOW COLUMNS FROM {$table_exist}";
+					    	$query = $db->query($sql);
+					    	$struct_secundario = $query->fetchall(PDO::FETCH_ASSOC);
+					    	/* percorre a estrutura */
+							foreach( $struct_secundario as $field_array ){
+								/* se não for o id */
+								if($field_array['Field'] != 'id'){
+									/* pega o campo que será mostrado */
+									$fields .= chr($chr).".{$field_array['Field']} {$table_exist}_{$field_array['Field']},";
+									/* Adiciona os campos que ficaram visivel no grid, pega o primeiro */
+									array_push($show_fields_grid, "{$table_exist}_{$field_array['Field']}");
+									break;	
+								}
+							}				
+								
+						}else{
+							echo "A tabela {$table_exist} não existe na base de dados.";
+							break;
+						}
+
+						$tables .= substr($field['Field'],3).' '.chr($chr). ' ';
+					}
+
+					$tables .= " ON a.{$field['Field']} = ".chr($chr).".id";
+					$chr += 1;
+				//}
+			}else{
+				
+				/* verifica se mostra no grid */	
+				if( strtoupper($field['grid']) == 'SHOW' || $field['grid'] == '' ){
+					/* Adiciona os campos que ficaram visivel no grid */
+					array_push($show_fields_grid, $table.'_'.$field['Field']);
+				}
+			}
+		}
+	}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>	
+
+</head>
+<style>
+	
+	.col{
+	  	padding: 5px; /*cria um espaçamento para dentro nas colunas para não ficarem "coladas"*/
+	  	flex: 33%;	  	
+	  	background: #fff;
+	  	text-align: left;	
+	  	background-color: #80DEEA;
+	}
+	
+	.titulo{
+	  	padding: 5px; /*cria um espaçamento para dentro nas colunas para não ficarem "coladas"*/
+	  	flex: 100%;
+	  	text-align: center;	
+	  	background-color: #FFECB3;
+	}
+
+	.divflex {
+		clear: both;
+	  	display:flex; /*O form tem os três divs logo é o que fica com o display flex*/
+	}
+
+</style>
+<body>
+	<div  class="divflex">
+		<div class="titulo"><label>Contatos </label></div>
+	</div>
+
+	<div  class="divflex">
+		<div class="col"><label>Abreviação </label></div>
+		<div class="col"><label>Título da Tabela </label></div>
+		<div class="col"><label>Nome da Tabela </label></div>	
+	</div>
+	
+	<div  class="divflex">
+		<div class="col"><input style='width: 05%;' type="text" id="abreviacao" value="pc"></div>
+		<div class="col"><input style='width: 98%;'  type="text" id="titulo" value="Contatos do Pedido de Compras"></div>
+		<div class="col"><input style='width: 98%;' type="text" id="tabela" value="compras_materia_prima_contatos"></div>	
+	</div>
+	
+	<div  class="divflex">
+		<div class="col"><label>Artigo </label></div>
+		<div class="col"><label>Título Curto </label></div>
+		<div class="col"><label>Título Principal </label></div>	
+	</div>
+
+	<div  class="divflex">
+		<div class="col"><input style='width: 05%;' type="text" id="artigo" value="a"></div>
+		<div class="col"><input style='width: 98%;' type="text" id="titulo_curto" value="Compras"></div>
+		<div class="col"><input style='width: 98%;' type="text" id="titulo_principal" value="Pedidos de Compras"></div>	
+	</div>
+
+	<div  class="divflex">
+		<div class="col"><label>Campos da tabela </label></div>
+		<div class="col"><label>Descrição dos campos da tabela </label></div>
+		<div class="col"><label>Tipos dos campos</label></div>	
+	</div>
+	
+	<div class="divflex">
+		<div class="col">
+<textarea id='campos' rows='6' cols='30' >
+nr_pedido
+nm_contato
+observacao
+telefone
+celular
+</textarea>				
+		</div>
+		<div class="col">
+<textarea id='descricao_campos' rows='6' cols='30' >
+Pedido
+Nome do Contato
+Observação
+Telefone
+Celular
+</textarea>				
+		</div>
+		<div class="col">
+<textarea id='tipos_campos' rows='6' cols='30' >
+text
+text
+text
+text
+text
+</textarea>				
+		</div>	
+	</div>
+
+	<div>
+		Texto HTML <textarea id='saidaHTML' rows='18' cols='160' ></textarea>					
+	</div>
+
+	<div>
+		<button id="btngerar">Gerar</button>
+	</div>
+</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+
+	$("#btngerar").on('click', '', function(e){
+		var abreviacao = $("#abreviacao").val();
+		var tabela = $("#tabela").val();
+		var titulo = $("#titulo").val();
+		var titulo_curto = $("#titulo_curto").val();
+		var titulo_principal = $("#titulo_principal").val();
+		var artigo = $("#artigo").val();
+		var descricao_campos = $("#descricao_campos").val();
+		var array_descricao_campos = descricao_campos.split('\n');
+		var campos = $("#campos").val();
+		var array_campos = campos.split('\n');
+		var tipos = $("#tipos_campos").val();
+		var array_tipos = tipos.split('\n');
+
+		var html=""; 
+		html += "<!-- *************** " + titulo.toUpperCase() + " **************** -->\n";
+
+		html += "<h3 class='" + abreviacao + "' id='" + abreviacao + "_ancora_contatos' style='width: 100%; text-align: center;'>\n";
+		html += "	Manutenção <span>" + titulo + "</span>\n";
+		html += "</h3>\n";
+
+		html += "<div style='text-align: center;'>\n";
+		html += "	<a href='#menu' class='angora'>" + titulo_principal + "</a>\n";
+		html += "	<a href='#" + abreviacao + "_ancora_itens' class='angora'>Itens</a>\n";
+		html += "	<a href='#" + abreviacao + "_ancora_anexos' class='angora'>Anexos</a>\n";
+		html += "</div>\n";
+
+		html += "<div style='width: 100%; height: 400px; margin: auto;'>\n";
+		html += "	<table  class='display cell-border' id='" + abreviacao +"_tabela_contatos' style='width: 98%; font-size: 11px;'>\n";
+		html += "		<thead>\n";
+		html += "			<tr>\n";
+		for (i = 0; i < array_descricao_campos.length; i++) {
+			if(array_descricao_campos[i]){
+				html += "				<th>" + array_descricao_campos[i] + "</th>\n";
+			} 
+		}				
+		html += "			</tr>\n";
+		html += "		</thead>\n";
+		html += "	</table>\n";
+		html += "</div>\n";
+		
+		html += "<div class='espaco'></div>\n";
+
+		html += "<div class='div-bloco'>\n";
+			j=0;
+			for (i = 0; i < array_descricao_campos.length; i++) { 
+				j++;
+				if(j==1){				
+					html += "	<div class='divflex'>\n";
+				}
+				if(array_descricao_campos[i] ){
+					html += "		<div class='coluna3 direita'>\n";
+					html += "			<label>" + array_descricao_campos[i] + ": </label>\n";
+					html += "			<input id='" + abreviacao + "_" + array_campos[i] + "' type='" + array_tipos[i] + "'>\n";
+					html += "		</div>\n";
+				}else{
+					html += "		<div class='coluna3 direita'></div>\n";
+				}
+				if(j==3){
+					j=0;				
+					html += "	</div>\n";
+				}
+			}		
+			
+		html += "	<div class='excluir' id='" + abreviacao + "_excluir_contato' hidden>\n";
+		html += "		<label>Deseja excluir contato selecionado? </label>\n";
+		html += "		<button id='" + abreviacao + "_btn_sim_excluir'>Sim</button>\n";
+		html += "		<button onclick=\"$('#" + abreviacao + "_excluir_contato').hide();\">Não</button>\n";
+		html += "	</div>\n";
+ 
+		html += "	<div style='padding-top: 25px; text-align: right;'>\n";
+		html += "		<button id='" + abreviacao + "_btn_novo_contato'>Novo Contato</button>\n";
+		html += "		<button id='" + abreviacao + "_btn_gravar_contato'>Incluir Contato</button>\n";
+		html += "		<button id='" + abreviacao + "_btn_excluir_contato' hidden>Excluir Contato</button>\n";
+		html += "	</div>\n";
+
+		html += "</div>\n";
+		
+		$("#saidaHTML").html(html);
+	});
+
+</script>
+
+
+

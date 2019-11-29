@@ -1,0 +1,442 @@
+<html lang="pt-br" charset="utf-8">
+	<style type="text/css">
+		
+		input:invalid { 
+  			border: 1px solid red;
+		}
+		input:valid {
+		  border-color: #d9d9d9;
+		}
+		input:placeholder-shown {
+		  border-color: #d9d9d9;
+		}
+
+	</style>
+
+	<head>
+		<link rel="shortcut icon" href="favicon.ico">
+		<!-- Usar este cabeçalho na order que se encontra, a mudança de ordem gera erro na pagina -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<title>Sistema de Gestão Industrial</title>
+	</head>
+
+	<body>
+
+		<div class='class_body'>
+			 	
+			<nav class="navbar navbar-toggleable-md navbar-light bg-faded btco-menu">
+			    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <a class='navbar-brand' href='#'><img src='favicon.ico' height='70' width='70'  alt=''></a>
+			    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			        <ul class="navbar-nav">
+			            <li class="nav-item dropdown">
+			                <a class="nav-link dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manutenção</a>
+			                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			                    <li><a class="dropdown-item" href="#" onclick="open__(this);" id="_menu_"  >Menus</a>
+			                    	<span>table:menu,tableaux1:,tableaux2:,sql1:,sql2:,caption:Menus</span></li>
+			                    <li><a class="dropdown-item" href="#" onclick="open__(this);" id="_users_">Usuários</a>
+			                    	<span>table:users,tableaux1:menu,tableaux2:,sql1:,sql2:,caption:Usuários</span></li>
+			                    <li><a class="dropdown-item" href="#">????</a></li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </div>
+			</nav>
+
+			<div id="container-fluid" class="container-fluid" style="display: none;">
+			  	<div class="row">
+				    <div class="col-12">
+				        <div class="card mt-3">  
+				        	<div class="card-header">
+				          		<ul class="nav nav-tabs" id="myTab" role="tablist">
+				            		<li class="nav-item">
+				                		<a id="zero-tab" href="#zero" onclick="$('#zero-tab').tab('show');" class="nav-link">Filtro</a>
+				            		</li>			          			
+				            		<li class="nav-item">
+				                		<a id="one-tab"  href="#one"  onclick="$('#one-tab').tab('show');" aria-selected="true" class="nav-link">Tabela</a>
+				            		</li>
+				            		<li class="nav-item">
+				                		<a id="two-tab"  href="#two"  onclick="$('#two-tab').tab('show');" class="nav-link"  >Formulário</a>
+				            		</li>
+				          		</ul>
+				        	</div>
+
+					        <div class="tab-content" id="myTabContent">
+
+					        	<div class="tab-pane fade p-3" id="zero" role="tabpanel" >
+					            	<div id="body-filter"></div> 
+					          	</div>
+					          
+					          	<div class="tab-pane fade show active p-3" id="one" role="tabpanel" >
+					            	<div id="body-grid"></div>  
+			            			<nav aria-label=''>
+						            	<ul class='pagination justify-content-left'>
+						              		<li class='page-item'>
+						                		<a id='nav-page-first' class='page-link' href='#'>Primeiro</a>
+						              		</li>
+						              		<li class='page-item' >
+						                		<a id='nav-page-previous'  class='page-link' href='#'>Anterior</a>
+						              		</li>
+						              		<input type='text' id='nav-page-go' class='page-link' value='1' size='5'>
+						              		<input type='text' id='nav-limit-page' class='page-link' value='{$limit_page}' size='5' disabled>
+						              		<a class='page-link' id='nav-page-button' href='#'>Vá</a>
+						                	<li class='page-item' >
+						                		<a id='nav-page-next' class='page-link' href='#'>Próximo</a>
+							            	</li>
+							            	<li class='page-item' >
+							                	<a id='nav-page-last' class='page-link' href='#'>Ultimo</a>
+							            	</li>
+						            	</ul>
+					        		</nav>		                        
+					          	</div>
+
+					        	<div class="tab-pane fade p-3" id="two" role="tabpanel" >
+					            	<div id="body-form" ></div> 
+					          	</div>
+
+					        </div>
+					    </div>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+		<script src="js/pagination.js" ></script>
+
+	</body>	
+
+	<script type="text/javascript" charset="utf-8" async defer>
+
+
+		limit_page = 0;
+		page = 1;
+		where = "";
+
+		$( document ).ready( function () {
+		    $( '.navbar a.dropdown-toggle' ).on( 'click', function ( e ) {
+		        var $el = $( this );
+		        var $parent = $( this ).offsetParent( ".dropdown-menu" );
+		        $( this ).parent( "li" ).toggleClass( 'show' );
+
+		        if ( !$parent.parent().hasClass( 'navbar-nav' ) ) {
+		            $el.next().css( { "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 } );
+		        }
+		        $( '.navbar-nav li.show' ).not( $( this ).parents( "li" ) ).removeClass( "show" );
+		        return false;
+		    } );
+
+
+		} );
+
+		function sel_tab_( f ){
+			if( $("#one" + f).is(':visible') ) {
+				$("#one" + f).hide();
+				$("#two" + f).show();		
+				$("#two" + f).tab('show');		  
+			} else {
+				$("#one" + f).show();
+				$("#two" + f).hide();
+				$("#one" + f).tab('show');				  
+			}			
+			//$(f).tab('show');
+		}
+
+		var button_edit = function(x) {
+
+			$('#two-tab').tab('show');
+
+			$('#row_' + x + ' td').each(function(){
+				id__ = this.id;
+				if ( id__.indexOf("filter") == -1) {
+						if( $("#" + this.id + "_").prop("type") == 'radio'){
+						$("input:radio[name=" + this.id + "_][value=" + this.innerText + "]").click();
+					}else if( $("#" + this.id + "_").prop("type") == 'checkbox'){
+						$("input:checkbox[name=" + this.id + "_][value=" + this.innerText + "]").click();
+					}else if( $("#" + this.id + "_").prop("type") == 'datetime' ){
+						$("#" + this.id + "_").val( this.innerText.substr(6,4) + '-' + this.innerText.substr(3,2)  + '-' +  this.innerText.substr(0,2) + 'T' + this.innerText.substr(11,5));
+					}else if( $("#" + this.id + "_").prop("type") == 'date' ){
+						$("#" + this.id + "_").val( this.innerText.substr(6,4) + '-' + this.innerText.substr(3,2)  + '-' +  this.innerText.substr(0,2) );										
+					}else if( $("#" + this.id + "_").prop("type") == 'time' ){
+						$("#" + this.id + "_").val( this.innerText );										
+					}else{
+						$("#" + this.id + "_").val(this.innerText);
+					}
+				}	
+
+			});
+
+		}
+
+		var load_dados_filter = function(table) {
+			
+			dispositivo = "computador"
+			if( $(window).width() <= 600){
+				dispositivo = "celular"
+			}
+
+			$.post("create_filter.php", 
+				{ 	
+					table: table,
+					dispositivo: dispositivo
+				},
+				function(data)
+				{
+
+					$("#body-filter").html("");
+					$("#body-filter").append(data);
+
+				}).fail(function(r) {
+			    	alert( "error" );
+
+			    }
+
+			);    
+
+		}
+
+		var button_filter = function( table, type_filter ) {
+			/* Limpa as Variaveis */
+			where = "";
+			page = 1;
+
+			var atemp; 
+
+			$( "#form_padrao_filter .filter" ).each(function( index ) {
+    			event.preventDefault();
+				
+				/* Separa o nome do input, para pegar o nome do campo */
+				atemp = this.id.split("__");
+
+				/* Se tiver um valor no input */
+				if( this.value != '' ){
+					/* Verifica o tipo */
+					if( this.type == "select-one" ){
+						/* se for uma lista, filtra só os iguais */
+						where += "a." + atemp[1] + " = '" + this.value + "' AND ";
+					}else if( this.type == "radio" ){
+						/* se for um radio, filtra o que esta selecionado */
+						if( this.checked ){
+							where += "a." + atemp[1] + " = '" + this.value + "' AND ";						
+						}
+					}else if( this.type == "checkbox" ){
+						/* 	se for um checkbox, filtra o que esta selecionado, 
+							usa OR pois mais de um pode estar selecionado */
+						if( this.checked ){
+							where += "a." + atemp[1] + " = '" + this.value + "' OR  ";						
+						}						
+					}else{
+						/* se for um text, date ou qualquer outro input, filtra com like */
+						where += "a." + atemp[1] + " like '%" + this.value + "%' AND ";
+					}
+				}
+			});
+
+			/* Tira o final da string ( AND,OR ) */
+			where = where.substr( 0, where.length - 5); 
+
+			/* Lê novamente os dados */  
+			load_dados_table();
+
+			/* Seleciona a tab tabela */
+			$('#one-tab').tab('show');
+
+		}
+
+		var load_dados_form = function( table, type_form ) {
+			dispositivo = "computador"
+			if( $(window).width() <= 600){
+				dispositivo = "celular"
+			}
+
+			$.post("gerar_estrutura.php", 
+				{ 	
+					table: table,
+					//table: "users",
+					dispositivo: dispositivo
+				},
+				function(data)
+				{
+
+					$("#body-form").html("");
+					$("#body-form").append(data);
+
+					//restore_data_after_upgrade__();
+
+				}).fail(function(r) {
+			    	alert( "error" );
+			    }
+			);   
+		}	
+
+		var load_dados_table = function( ) {
+
+			var temp1__;
+			var tableaux1__="";
+			var tableaux2__="";
+			
+			temp1__ = window.localStorage.getItem("___tables");
+			temp1__ = temp1__.split(",");
+
+			for( var i = 0; i < temp1__.length ; i++ ){
+				temp2__ = temp1__[i].split(":");
+				if(temp2__[0] == "table")    { var table__ = temp2__[1]; }
+				if(temp2__[0] == "tableaux1"){ var tableaux1__ = temp2__[1]; }
+				//if(temp2__[0] == "tableaux2"){ var tableaux2__ = temp2__[1]; }
+				//if(temp2__[0] == "sql1")     { var sql1__ = temp2__[1]; }
+				//if(temp2__[0] == "sql2")     { var sql2__ = temp2__[1]; }
+				if(temp2__[0] == "caption")  { var caption__ = temp2__[1]; }
+			}
+
+			/* Gera dados da tabela principal */
+			if( table__ != ""){
+
+				$.post("gerar_tabela.php", 
+					{ 	
+						table: table__, 
+						table_caption: "Lista da tabela -> " + caption__,
+						limit_start: page,
+						where: where
+					},
+					function(data)
+					{
+						$("#body-grid").html("");
+						$("#body-grid").append(data);
+						$('#nav-limit-page').val($('#limit_page').val());
+						$('#nav-page-go').val(page);
+
+					}).fail(function(r) {
+				    	alert( "error" );
+
+				    }
+				); 
+
+				$temp = createtab_( table__ );
+
+			}
+
+			if( tableaux1__ != ""){
+				$temp = createtab_( tableaux1__ );
+				$("#body-form").after( $temp );
+
+				
+				$.post("gerar_tabela.php", 
+					{ 	
+						table: tableaux1__, 
+						table_caption: "Lista da tabela -> " + caption__,
+						limit_start: page,
+						where: where
+					},
+					function(data_tab)
+					{   
+
+						$("#body-form" + tableaux1__).append( "<h1>AQUI</h1>");
+						$("#body-grid" + tableaux1__).append(data_tab);
+
+					}).fail(function(r) {
+				    	alert( "error" );
+
+				    }
+				); 
+			}
+		}
+
+		function open__(e){
+			var temp1__;
+			var temp2__;
+			var table__;
+			var tableaux1__;
+			var tableaux2__;
+			var sql1__;
+			var sql2__;
+
+			temp1__ = $("#" + e.id +  " + span").text();
+			temp1__ = temp1__.split(",");
+
+			window.localStorage.setItem('___tables', temp1__ );
+
+			for( var i = 0; i < temp1__.length ; i++ ){
+				temp2__ = temp1__[i].split(":");
+				if(temp2__[0] == "table"){ table__ = temp2__[1]; }
+				if(temp2__[0] == "tableaux1"){ tableaux1__ = temp2__[1]; }
+				if(temp2__[0] == "tableaux2"){ tableaux2__ = temp2__[1]; }
+				if(temp2__[0] == "sql1"){ sql1__ = temp2__[1]; }
+				if(temp2__[0] == "sql2"){ sql2__ = temp2__[1]; }
+			}
+			
+			if( table__ != "" ){
+				$("#container-fluid").css("display", "block");
+				load_dados_table( ); 
+			    load_dados_form( table__ );
+			    load_dados_filter( table__ );
+			}
+		}
+
+		/* Valida o formulario e enviar, f->formulário atual */
+		function onsubmit_(f){
+			/* Filtra os campos com validação */
+			var form =  $('#' + f.id + ' input,textarea,select').filter('[required]:visible');
+			/* Inicializa variavel como verdadeiro para enviar o formulário */
+			var valid = true;
+			var temp;
+			for( var i = 0; i < form.length ; i++  ){
+				/* Se o campo esta invalido, campo com cor vermelho */
+				if( $("#" + form[i].id).css("border-color") == "rgb(255, 0, 0)"){
+					$("#" + form[i].id )[0].focus(); /* Selecio o controle */
+					valid = false; 					 /* Tira a permissão de envio do formulário */
+					temp = form[i].outerHTML; 		 /* Pega o HTML do input */
+					temp = temp.split("||")   		 /* Cria um array para separar a mensagem */
+					alert(temp[1]);                  /* mostra a mensagem de validacao */
+					break;
+				}					
+			}
+
+			if(valid){
+				alert("sim");			
+			}
+		}
+
+		function createtab_( f ){
+
+			htmltab  = "<div id='container-fluid-" + f + "' class='container-fluid' style='display: block;'>";
+			htmltab += "	<div class='row'>";
+			htmltab += "	    <div class='col-12'>";
+			htmltab += "	        <div class='card mt-3'>"; 
+			htmltab += "	        	<div class='card-header'>";
+			htmltab += "	          		<ul class='nav nav-tabs' id='tab-" + f + "' role='tablist'>";
+			htmltab += "	            		<li class='nav-item'>";
+			htmltab += "	                		<a class='nav-link' id='one-tab" + f + "' role='tab' href='#one" + f + "' onclick=\"sel_tab_( '" + f + "');\" aria-selected='true'>Tabela</a>";
+			htmltab += "	            		</li>";
+			htmltab += "	            		<li class='nav-item'>";
+			htmltab += "	                		<a class='nav-link' id='two-tab" + f + "' role='tab' href='#two" + f + "' onclick=\"sel_tab_( '" + f + "');\" aria-selected='false'>Formulário</a>";
+			htmltab += "	            		</li>";
+			htmltab += "	          		</ul>";
+			htmltab += "	        	</div>";
+			htmltab += "	    	    <div class='tab-content' >";
+			htmltab += "			    	<div class='tab-pane fade show active p-3'             id='one" + f + "' role='tabpanel'>";
+			htmltab += "			    		 <div id='body-grid" + f + "'></div>";
+			htmltab += "					</div>";
+			htmltab += "					<div class='tab-pane fade p-3' id='two" + f + "' role='tabpanel'>";
+			htmltab += "						 <div id='body-form" + f + "' ></div>";
+			htmltab += "					</div>";
+			htmltab += "				</div>";
+			htmltab += "			</div>";
+			htmltab += "		</div>";
+			htmltab += "	</div>";
+			htmltab += "</div>";
+
+			return htmltab; 
+		}
+
+
+
+	</script>
+</html>		

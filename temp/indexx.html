@@ -1,0 +1,110 @@
+<html lang="pt-br" charset="utf-8">
+	<style type="text/css">
+		
+		input:invalid { 
+  			border: 1px solid red;
+		}
+		input:valid {
+		  	border-color: #d9d9d9;
+		}
+		input:placeholder-shown {
+		  	border-color: #d9d9d9;
+		}
+
+	</style>
+
+	<head>
+		<link rel="shortcut icon" href="favicon.ico">
+		<!-- Usar este cabeçalho na order que se encontra, a mudança de ordem gera erro na pagina -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<title>Sistema de Gestão Industrial</title>
+	</head>
+
+	<body>
+
+		<div class='class_body'>
+			 	
+			<nav class="navbar navbar-toggleable-md navbar-light bg-faded btco-menu">
+			    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <a class='navbar-brand' href='#'><img src='favicon.ico' height='70' width='70'  alt=''></a>
+			    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			        <ul class="navbar-nav">
+			            <li class="nav-item dropdown">
+			                <a class="nav-link dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manutenção</a>
+			                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			                    <li><a class="dropdown-item" href="#" onclick="open__(this);" id="xwzsqmenu"  >Menus</a>
+			                    	<span hidden>
+			                    	table_:menu,
+			                    	table_caption:Menus,
+			                    	table_son1:user_menu,
+			                    	table_caption_list2:Usuario-Menus,
+			                    	table_aba_son1:Usuario x Menus,
+			                    	table_fields_father1:id,
+			                    	table_fields_son1:menu_id</span>
+			                    </li>
+			                    <li><a class="dropdown-item" href="#" onclick="open__(this);" id="sdseausers">Usuários</a>
+			                    	<span hidden>table_:users,
+			                    		table_caption:Usuário
+			                    	</span>
+			                    </li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </div>
+			</nav>
+
+			<div id="container-fluid" class="container-fluid" style="display: none;">
+			  	<div class="row">
+				    <div class="col-12">
+				        <div class="card mt-3">  
+				        	<div class="card-header">
+				        	</div>
+					        <div class="tab-content" id="card-content">
+					        </div>
+					    </div>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+		<script src="js/pagination.js" ></script>
+		<script src="js/load.js" ></script>
+		<script src="js/select.js" ></script>
+		<script src="js/button.js" ></script>
+		<script src="js/open.js" ></script>
+		<script src="js/submit.js" ></script>
+
+	</body>	
+
+	<script type="text/javascript" charset="utf-8" async defer>
+
+		limit_page = 0;
+		page = 1;
+		where = "";
+
+		$( document ).ready( function () {
+		    $( '.navbar a.dropdown-toggle' ).on( 'click', function ( e ) {
+		        var $el = $( this );
+		        var $parent = $( this ).offsetParent( ".dropdown-menu" );
+		        $( this ).parent( "li" ).toggleClass( 'show' );
+
+		        if ( !$parent.parent().hasClass( 'navbar-nav' ) ) {
+		            $el.next().css( { "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 } );
+		        }
+		        $( '.navbar-nav li.show' ).not( $( this ).parents( "li" ) ).removeClass( "show" );
+		        return false;
+		    } );
+		} );
+
+		
+	</script>
+</html>		

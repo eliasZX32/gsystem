@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>	
+
+</head>
+<style>
+	.col{
+	  	padding: 5px; /*cria um espaçamento para dentro nas colunas para não ficarem "coladas"*/
+	  	flex: 33%;
+	  	background: #fff;
+	  	text-align: left;	
+	  	background-color: #E57373;
+	}
+
+	.divflex {
+		clear: both;
+	  	display:flex; /*O form tem os três divs logo é o que fica com o display flex*/
+	}
+
+</style>
+<body>
+	<div  class="divflex">
+		<div class="col"><label>Abreviação </label></div>
+		<div class="col"><label>Titulo da Tabela </label></div>
+		<div class="col"><label>Nome da Tabela </label></div>	
+	</div>
+	<div  class="divflex">
+		<div class="col"><input type="text" id="abreviacao" value="pc"></div>
+		<div class="col"><input type="text" id="titulo" value="Anexos da Negociação de Compras"></div>
+		<div class="col"><input type="text" id="tabela" value="compras_anexos"></div>	
+	</div>
+	<div  class="divflex">
+		<div class="col"><label>Artigo </label></div>
+		<div class="col"><label>Titulo Curto </label></div>
+		<div class="col"><label>Titulo Principal </label></div>	
+	</div>
+	<div  class="divflex">
+		<div class="col"><input type="text" id="artigo" value="a"></div>
+		<div class="col"><input type="text" id="titulo_curto" value="Anexos"></div>
+		<div class="col"><input type="text" id="titulo_principal" value="Negociação"></div>	
+	</div>
+
+	<div  class="divflex">
+		<div class="col"><label>Campos da tabela </label></div>
+		<div class="col"><label>Descrição dos campos da tabela </label></div>
+		<div class="col"><label>Tipos dos campos</label></div>	
+	</div>
+	<div class="divflex">
+		<div class="col">
+<textarea id='campos' rows='10' cols='30' >
+Nr_Pedido
+nm_arquivo
+nm_arquivooriginal
+ds_anexo
+dt_inclusao
+</textarea>				
+		</div>
+		<div class="col">
+<textarea id='descricao_campos' rows='10' cols='30' >
+Pedido
+Nome do Arquivo
+Nome Original
+Descrição
+Inclusão
+</textarea>				
+		</div>
+		<div class="col">
+<textarea id='tipos_campos' rows='10' cols='30' >
+text
+text
+text
+text
+date
+</textarea>				
+		</div>	
+	</div>
+
+	<div>
+		Texto HTML <textarea id='saidaHTML' rows='18' cols='160' ></textarea>					
+	</div>
+
+	<div>
+		<button id="btngerar">Gerar</button>
+	</div>
+</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+
+	$("#btngerar").on('click', '', function(e){
+		var abreviacao = $("#abreviacao").val();
+		var tabela = $("#tabela").val();
+		var titulo = $("#titulo").val();
+		var titulo_curto = $("#titulo_curto").val();
+		var titulo_principal = $("#titulo_principal").val();
+		var artigo = $("#artigo").val();
+		var descricao_campos = $("#descricao_campos").val();
+		var array_descricao_campos = descricao_campos.split('\n');
+		var campos = $("#campos").val();
+		var array_campos = campos.split('\n');
+		var tipos = $("#tipos_campos").val();
+		var array_tipos = tipos.split('\n');
+
+		var html=""; 
+		html += "<!-- *************** ANEXOS " + titulo.toUpperCase() + " **************** -->\n";
+
+		html += "<h3 class='" + abreviacao + "' id='" + abreviacao + "_ancora_anexos' style='width: 100%; text-align: center;'>\n";
+		html += "	Manutenção <span>" + titulo + "</span>\n";
+		html += "</h3>\n";
+
+		html += "<div style='text-align: center;'>\n";
+		html += "	<a class='angora' href='#menu'                               >" + titulo_principal + "</a>\n";
+		html += "	<a class='angora' href='#" + abreviacao + "_ancora_itens'    >Itens</a>\n";		
+		html += "	<a class='angora' href='#" + abreviacao + "_ancora_contatos' >Contatos</a>\n";
+		html += "</div>\n";
+
+		html += "<div style='width: 100%; height: 200px; margin: auto;'>\n";
+		html += "	<table  class='display cell-border' id='" + abreviacao + "_tabela_anexos' style='width: 98%; font-size: 11px;'>\n";
+		html += "		<thead>\n";
+		html += "			<tr>\n";
+		for (i = 0; i < array_descricao_campos.length; i++) {
+			if(array_descricao_campos[i]){
+				html += "				<th>" + array_descricao_campos[i] + "</th>\n";
+			} 
+		}				
+		html += "			</tr>\n";
+		html += "		</thead>\n";
+		html += "	</table>\n";
+		html += "</div>\n";
+
+		html += "<div class='espaco'></div>\n";
+
+		html += "<div class='div-bloco'>\n";
+		html += "	<div class='divflex'>\n";
+		html += "		<div class='coluna2 direita'>\n";
+		html += "			<label>Negociação: </label>\n";
+		html += "			<input id='"+ abreviacao + "_" + array_descricao_campos[0] + "_anexo' type='text' disabled>\n";
+		html += "		</div>\n";
+		html += "		<div class='coluna2'>\n";
+		html += "			<label>Data da Inclusão: </label>\n";
+		html += "			<input id='"+ abreviacao + "_dt_inclusao_anexo' type='text' disabled>\n";
+		html += "		</div>\n";
+		html += "	</div>\n";
+		html += "	<div class='divflex'>\n";
+		html += "		<div class='coluna1'>\n";
+		html += "			<label>Nome do Arquivo Indexado: </label>\n";
+		html += "			<input style='width: 80%;' id='"+ abreviacao + "_nm_arquivo_anexo' type='text' disabled>\n";
+		html += "		</div>\n";
+		html += "	</div>\n";
+		html += "	<div class='divflex'>\n";
+		html += "		<div class='coluna1'>\n";
+		html += "			<label>Nome ao Arquivo Original: </label>\n";
+		html += "			<input style='width: 80%;' id='"+ abreviacao + "_nm_arquivooriginal_anexo' type='text' disabled>\n";
+		html += "		</div>\n";
+		html += "	</div>\n";
+		html += "	<div class='divflex'>\n";
+		html += "		<div class='coluna1'>\n";
+		html += "			<label>Descrição do Conteúdo: </label>\n";
+		html += "			<input style='width: 80%;' id='"+ abreviacao + "_nm_ds_anexo' type='text' maxlength='255'>\n";
+		html += "		</div>\n";
+		html += "	</div>\n";
+		html += "	<div class='divflex'>\n";
+		html += "		<div class='coluna3'></div>\n";
+		html += "		<div class='coluna3'>\n";
+		html += "			<a class='download' id='" + abreviacao + "_download' download>Fazer Download</a></div>\n";
+		html += "		</div>\n";
+		html += "		<div class='coluna3'></div>\n";
+		html += "	</div>\n";
+
+		html += "	<br/>\n";
+
+		html += "	<form id='" + abreviacao + "_enviar_anexo' action='' method='post' enctype='multipart/form-data'>\n";
+		html += "		<input type='hidden' id='" + abreviacao + "_nr_orcamento_enviar' name='" + abreviacao + "_nr_orcamento_enviar' type='text'>\n";
+		html += "		<label>Descrição do Anexo: </label>\n";
+		html += "		<input id='" + abreviacao + "_ds_anexo_enviar' name='" + abreviacao + "_ds_anexo_enviar' style='width: 300px;' type='text'>\n";
+		html += "		<input id='" + abreviacao + "_file' name='" + abreviacao + "_file' style='width: 400px;' type='file'>\n";
+		html += "		<input type='submit' value='Enviar Arquivo'>\n";
+		html += "	</form>\n";
+
+		html += "	<div class='excluir' id='" + abreviacao + "_excluir_anexo' hidden>\n";
+		html += "		<label>Deseja excluir o anexo selecionado? </label>\n";
+		html += "		<button id='" + abreviacao + "_btn_sim_excluir_anexo'>Sim</button>\n";
+		html += "		<button onclick=\"$('#" + abreviacao + "_excluir_anexo').hide();\">Não</button>\n";
+		html += "	</div>\n";
+ 
+		html += "	<div style='padding-top: 15px; text-align: right;'>\n";
+		html += "		<button id='" + abreviacao + "_btn_gravar_anexo'  style='display: none;'>Atualizar Anexo</button>\n";
+		html += "		<button id='" + abreviacao + "_btn_excluir_anexo' style='display: none;'>Excluir Anexo</button>\n";
+		html += "	</div>\n";
+		html += "</div>\n";
+
+		$("#saidaHTML").html(html);
+	});
+
+</script>
+
+
+

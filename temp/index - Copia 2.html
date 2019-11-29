@@ -1,0 +1,293 @@
+<html lang="pt-br" charset="utf-8">
+	<style type="text/css">
+		
+		input:invalid { 
+  			border: 1px solid red;
+		}
+		input:valid {
+		  	border-color: #d9d9d9;
+		}
+		input:placeholder-shown {
+		  	border-color: #d9d9d9;
+		}
+
+	</style>
+
+	<head>
+		<link rel="shortcut icon" href="favicon.ico">
+		<!-- Usar este cabeçalho na order que se encontra, a mudança de ordem gera erro na pagina -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<title>Sistema de Gestão Industrial</title>
+	</head>
+
+	<body>
+
+		<div class='class_body'>
+			 	
+			<nav class="navbar navbar-toggleable-md navbar-light bg-faded btco-menu">
+			    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <a class='navbar-brand' href='#'><img src='favicon.ico' height='70' width='70'  alt=''></a>
+			    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			        <ul class="navbar-nav">
+			            <li class="nav-item dropdown">
+			                <a class="nav-link dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manutenção</a>
+			                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			                    <li><a class="dropdown-item" href="#" onclick="open__(this);" id="_menu_"  >Menus</a>
+			                    	<span hidden>
+			                    	table_:menu,
+			                    	table_caption:Menus,
+			                    	table_son1:user_menu,
+			                    	table_caption_list2:Usuario-Menus,
+			                    	table_aba_son1:Usuario x Menus,
+			                    	table_fields_father1:id,
+			                    	table_fields_son1:menu_id</span>
+			                    </li>
+			                    <li><a class="dropdown-item" href="#" onclick="open__(this);" id="_users_">Usuários</a>
+			                    	<span hidden>table_:users,
+			                    		table_caption:Usuário
+			                    	</span>
+			                    </li>
+			                    <li><a class="dropdown-item" href="#">????</a></li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </div>
+			</nav>
+
+			<div id="container-fluid" class="container-fluid" style="display: none;">
+			  	<div class="row">
+				    <div class="col-12">
+				        <div class="card mt-3">  
+				        	<div class="card-header">
+				          		<ul class="nav nav-tabs" id="myTab" role="tablist">
+				            		<li class="nav-item">
+				                		<a id="zero-tab" href="#zero" onclick="sel_tab('#zero', '#zero-tab');" class="nav-link">Filtro</a>
+				                		<span id="zero-span"></span>
+				            		</li>			          			
+				            		<li class="nav-item">
+				                		<a id="one-tab"  href="#one"  onclick="sel_tab('#one', '#one-tab');" aria-selected="true" class="nav-link">Tabela</a>
+				            		</li>
+				            		<li class="nav-item">
+				                		<a id="two-tab"  href="#two"  onclick="sel_tab('#two', '#two-tab');" class="nav-link disabled" >Formulário</a>
+				            		</li>
+				          		</ul>
+				        	</div>
+
+					        <div class="tab-content" id="card-content">
+
+					        	<div class="tab-pane fade p-3" id="zero" role="tabpanel" >
+					            	<div id="body-filter"></div> 
+					          	</div>
+					          
+					          	<div class="tab-pane fade show active p-3" id="one" role="tabpanel" >
+					            	<div id="body-grid"></div>  
+			            			<nav aria-label=''>
+						            	<ul class='pagination justify-content-left'>
+						              		<li class='page-item'>
+						                		<a id='nav-page-first' class='page-link' href='#'>Primeiro</a>
+						              		</li>
+						              		<li class='page-item' >
+						                		<a id='nav-page-previous'  class='page-link' href='#'>Anterior</a>
+						              		</li>
+						              		<input type='text' id='nav-page-go' class='page-link' value='1' size='5'>
+						              		<input type='text' id='nav-limit-page' class='page-link' value='{$limit_page}' size='5' disabled>
+						              		<a class='page-link' id='nav-page-button' href='#'>Vá</a>
+						                	<li class='page-item' >
+						                		<a id='nav-page-next' class='page-link' href='#'>Próximo</a>
+							            	</li>
+							            	<li class='page-item' >
+							                	<a id='nav-page-last' class='page-link' href='#'>Ultimo</a>
+							            	</li>
+						            	</ul>
+					        		</nav>		                        
+					          	</div>
+
+					        	<div class="tab-pane fade p-3" id="two" role="tabpanel" >
+					            	<div id="body-form" ></div> 
+					          	</div>
+
+					        </div>
+					    </div>
+				    </div>
+			  	</div>
+			</div>
+		</div>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+		<script src="js/pagination.js" ></script>
+		<script src="js/load.js" ></script>
+		<script src="js/select.js" ></script>
+		<script src="js/button.js" ></script>
+
+	</body>	
+
+	<script type="text/javascript" charset="utf-8" async defer>
+
+		limit_page = 0;
+		page = 1;
+		where = "";
+
+		$( document ).ready( function () {
+		    $( '.navbar a.dropdown-toggle' ).on( 'click', function ( e ) {
+		        var $el = $( this );
+		        var $parent = $( this ).offsetParent( ".dropdown-menu" );
+		        $( this ).parent( "li" ).toggleClass( 'show' );
+
+		        if ( !$parent.parent().hasClass( 'navbar-nav' ) ) {
+		            $el.next().css( { "top": $el[0].offsetTop, "left": $parent.outerWidth() - 4 } );
+		        }
+		        $( '.navbar-nav li.show' ).not( $( this ).parents( "li" ) ).removeClass( "show" );
+		        return false;
+		    } );
+
+
+		} );
+
+		/* Valida o formulario e enviar, f->formulário atual */
+		function onsubmit_(f){
+			/* Filtra os campos com validação */
+			var form =  $('#' + f.id + ' input,textarea,select').filter('[required]:visible');
+			/* Inicializa variavel como verdadeiro para enviar o formulário */
+			var valid = true;
+			var temp;
+			for( var i = 0; i < form.length ; i++  ){
+				/* Se o campo esta invalido, campo com cor vermelho */
+				if( $("#" + form[i].id).css("border-color") == "rgb(255, 0, 0)"){
+					$("#" + form[i].id )[0].focus(); /* Selecio o controle */
+					valid = false; 					 /* Tira a permissão de envio do formulário */
+					temp = form[i].outerHTML; 		 /* Pega o HTML do input */
+					temp = temp.split("||")   		 /* Cria um array para separar a mensagem */
+					alert(temp[1]);                  /* mostra a mensagem de validacao */
+					break;
+				}					
+			}
+
+			if(valid){
+				/* Envia dados do formulario para gravar */
+				var dados = jQuery( f ).serialize();
+				jQuery.ajax({
+					type: "POST",
+					url: "save.php",
+					data: dados,
+					success: function( data )
+					{
+						alert( data );
+					}
+				});
+			}
+		}
+
+		function createtab_( f ){
+
+			htmltab  = "<div id='container-fluid-" + f + "' class='container-fluid' style='display: block;'>";
+			htmltab += "	<div class='row'>";
+			htmltab += "	    <div class='col-12'>";
+			htmltab += "	        <div class='card mt-3'>"; 
+			htmltab += "	        	<div class='card-header'>";
+			htmltab += "	          		<ul class='nav nav-tabs' id='tab-" + f + "' role='tablist'>";
+			htmltab += "	            		<li class='nav-item'>";
+			htmltab += "	                		<a class='nav-link' id='one-tab" + f + "' role='tab' href='#one" + f + "' onclick=\"sel_tab_son( '" + f + "');\" aria-selected='true'>Tabela</a>";
+			htmltab += "	            		</li>";
+			htmltab += "	            		<li class='nav-item'>";
+			htmltab += "	                		<a class='nav-link' id='two-tab" + f + "' role='tab' href='#two" + f + "' onclick=\"sel_tab_son( '" + f + "');\" aria-selected='false'>Formulário</a>";
+			htmltab += "	            		</li>";
+			htmltab += "	          		</ul>";
+			htmltab += "	        	</div>";
+			htmltab += "	    	    <div class='tab-content' >";
+			htmltab += "			    	<div class='tab-pane fade show active p-3'             id='one" + f + "' role='tabpanel'>";
+			htmltab += "			    		 <div id='body-grid-" + f + "'></div>";
+			htmltab += "					</div>";
+			htmltab += "					<div class='tab-pane fade p-3' id='two" + f + "' role='tabpanel'>";
+			htmltab += "						 <div id='body-form-" + f + "' ></div>";
+			htmltab += "					</div>";
+			htmltab += "				</div>";
+			htmltab += "			</div>";
+			htmltab += "		</div>";
+			htmltab += "	</div>";
+			htmltab += "</div>";
+
+			return htmltab; 
+		}
+
+		function open__(e){
+
+			
+			$( "li.son-class" ).remove(); 
+
+			var temp2;
+			var table_ = ""; var table = ""; var table_caption = ""; var table_son = ""; var table_caption_list = ""; var table_aba_son = ""; var table_fields_father = "";	var table_fields_son = "";
+
+			var temp1 = $("#" + e.id +  " + span").text();
+			temp1 = temp1.replace(/\s/g, "")
+			temp1 = temp1.split(",");
+
+			for( var i = 0; i < temp1.length ; i++ ){
+				temp2 = temp1[i].split(":");
+				if( temp2[0]                                 == "table_")              { table_ = temp2[1]; table = temp2[1]; }
+				if( temp2[0]								 == "table_caption")       { table_caption 		 = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_son")           { table_son           = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_caption_list" ) { table_caption_list  = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_aba_son" )      { table_aba_son       = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_fields_father" ){ table_fields_father = temp2[1]; }
+				if( temp2[0].substring(0,temp2[0].length -1) == "table_fields_son" )   { table_fields_son    = temp2[1]; }
+
+				
+
+				/* Se for uma tabela ou
+				   Se todos campos da tabela filha estiver carregados ( verifico o ultimo parametro table_fields_son)
+				   Gera um grid da tabela 
+				*/
+			
+				if( table_caption != "" || table_fields_son != ""){
+
+					/* Cria tab para tabelas filhas  + table_son + "_'"*/
+					if(table_fields_son != ""){
+						/* Incluir abas extras */
+	            		html  = "<li class='nav-item son-class' >";
+	                	html += "	<a id='" + table_son + "-tab' href='#' onclick=\"sel_tab('#" + table_son + "', '#" + table_son + "-tab');\" class='nav-link disabled'>" + table_aba_son + "</a>";
+	            		html += "	<span id='" + table_son + "-span'>table:" + table + ",table_son:" + table_son + ",table_caption_list:" + table_caption_list + ",table_aba_son:" + table_aba_son + ",table_fields_father:" + table_fields_father + ",table_fields_son:" + table_fields_son + "</span>";
+	            		html += "</li>";
+	            		$("#myTab .nav-item").filter(":last").after( html );
+
+					    html  = "<div class='tab-pane fade p-3 son-class' id='" + table_son + "_' role='tabpanel' >";
+					    html += "	<div id='" + table_son + "' ></div>";
+					    html += "</div>";
+					    $("#two" ).filter(":last").after( html );
+					}else{
+						$("#zero-span" ).html( table_ + "," +  table_caption);
+						/*cria a grade só se for a tabela principal */
+						create_table_grid( table_, table_caption);
+					}
+					
+					table_ = ""; 
+					table_caption = ""; 
+					table_son = ""; 
+					table_caption_list = ""; 
+					table_aba_son = ""; 
+					table_fields_father = ""; 
+					table_fields_son = "";
+				}
+
+			}
+			
+			if( table != "" ){
+			    load_dados_form  ( table, "" );
+			    load_dados_filter( table );
+
+			    $( "#one-tab" ).tab( "show" );
+			    $( "#container-fluid" ).css( "display", "block");	
+			}
+
+		}
+
+		
+	</script>
+</html>		

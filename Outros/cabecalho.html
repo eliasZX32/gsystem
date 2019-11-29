@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script> 
+
+</head>
+<style>
+    .col{
+        padding: 1px; /*cria um espaçamento para dentro nas colunas para não ficarem "coladas"*/
+        flex: 33%;
+        background: #fff;
+        text-align: left;   
+        background-color: #FFF59D;
+    }
+
+    .divflex {
+        clear: both;
+        display:flex; /*O form tem os três divs logo é o que fica com o display flex*/
+    }
+
+    .titulo{
+        padding: 5px; /*cria um espaçamento para dentro nas colunas para não ficarem "coladas"*/
+        flex: 100%;
+        text-align: center; 
+        background-color: #FBC02D;
+    }
+
+</style>
+<body>
+    <div  class="divflex">
+        <div class="titulo"><label>Contatos </label></div>
+    </div>  
+    <div  class="divflex">
+        <div class="col"><label>Abreviação </label></div>
+        <div class="col"><label>Titulo da Tabela </label></div>
+        <div class="col"><label>Nome da Tabela </label></div>   
+    </div>
+    <div  class="divflex">
+        <div class="col"><input type="text" id="abreviacao" value="pc"></div>
+        <div class="col"><input type="text" id="artigo" value="o"><input type="text" id="titulo" value="Pedido de Compras"></div>
+        <div class="col"><input type="text" id="tabela" value="compras_materia_primas"></div>   
+    </div>  
+    <div  class="divflex">
+        <div class="col"><label>Chave </label></div>
+        <div class="col"><label>Chave 2 </label></div>
+        <div class="col"><label>Chave 3</label></div>   
+    </div>  
+    <div  class="divflex">
+        <div class="col"><input type="text" id="chave1" value="nr_pedido"></div>
+        <div class="col"><input type="text" id="chave2" value=""></div>
+        <div class="col"><input type="text" id="chave3" value=""></div> 
+    </div>  
+    <div  class="divflex">
+        <div class="col"><label>INNER JOIN </label></div>
+        <div class="col"><label>Campo Ligação Principal</label></div>
+        <div class="col"><label>Campo Ligação Secundário</label></div>
+        <div class="col"><label>Mostrar Campo Secundário</label></div>
+        <div class="col"><label>Campo Where</label></div>       
+        <div class="col"><label>Ordem da Consulta</label></div> 
+    </div>  
+    <div  class="divflex">
+        <div class="col"><input type="text" id="innerjoin" value="tb_fornecedores"></div>
+        <div class="col"><input type="text" id="innercampo1" value="cd_fornecedor"></div>
+        <div class="col"><input type="text" id="innercampo2" value="cd_fornecedor"></div>   
+        <div class="col"><input type="text" id="innermostrar" value="nm_razao"></div>
+        <div class="col"><input type="text" id="where" value="nr_pedido"></div> 
+        <div class="col"><input type="text" id="orderby" value="compras_materia_primas.nr_pedido"></div>
+    </div>
+    <div  class="divflex">
+        <div class="col"><label>Campo Baixado </label></div>
+        <div class="col"><label>Campo Cancelado</label></div>
+        <div class="col"><label>Coluna Grade Baixado</label></div>
+        <div class="col"><label>Coluna Grade Cancelado</label></div>
+        <div class="col"><label></label></div>       
+        <div class="col"><label></label></div> 
+    </div>  
+    <div  class="divflex">
+        <div class="col"><input type="text" id="campobaixado" value="fl_baixado"></div>
+        <div class="col"><input type="text" id="campocancelado" value="fl_cancelado"></div>
+        <div class="col"><input type="text" id="colunabaixado" value="3"></div>   
+        <div class="col"><input type="text" id="colunacancelado" value="4"></div>
+        <div class="col"><input type="text" id="" value=""></div> 
+        <div class="col"><input type="text" id="" value=""></div>
+    </div>    
+    <div  class="divflex">
+        <div class="col"><label>Campos da tabela </label></div>
+        <div class="col"><label>Descrição dos campos da tabela </label></div>
+        <div class="col"><label>Tipos dos campos</label></div>  
+    </div>
+
+    <div class="divflex">
+        <div class="col">
+<textarea id='campos' rows='10' cols='30' >
+nr_pedido
+cd_fornecedor
+nr_documento
+nm_contato
+dt_pedido
+dt_prev_entrega
+dt_entrega
+dt_fechamento
+fl_baixado
+fl_cancelado
+vr_diferenca
+vr_financeiro
+vr_juros
+vr_desconto
+ds_finalidade
+autorizadopor
+aprovadopor
+condicaopagamento
+prazodeentrega
+observacaocomplementar
+datainclusao
+dataatualizacao
+usuario</textarea>              
+        </div>
+        <div class="col">
+<textarea id='descricao_campos' rows='10' cols='30' >
+Pedido
+Fornecedor
+Documento
+Contato
+Pedido
+Prev. Entrega
+Entrega
+Fechamento
+Baixado
+Cancelado
+Diferenca
+Financeiro
+Juros
+Desconto
+Finalidade
+Autorizado por
+Aprovado por
+Condição Pagamento
+Prazo de Entrega
+Observação complementar
+Inclusao
+Atualizacao
+Usuário</textarea>              
+        </div>
+        <div class="col">
+<textarea id='tipos_campos' rows='10' cols='30' >
+text
+text
+text
+text
+date
+date
+date
+date
+text
+text
+text
+text
+text
+text
+text
+text
+text
+text
+text
+text
+date
+date
+date</textarea>             
+        </div>  
+    </div>
+    <div>
+        <button id="btngerar">Gerar</button>
+        <button id="btnphp">Gerar PHP</button>
+        <button id="btnjavascript">Gerar JavaScript</button>
+    <br />  
+    <div>
+        Texto HTML <textarea id='saidaHTML' rows='18' cols='160' ></textarea>                   
+    </div>
+
+
+</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+
+    $("#btngerar").on('click', '', function(e){
+        var abreviacao = $("#abreviacao").val();
+        var tabela = $("#tabela").val();
+        var titulo = $("#titulo").val();
+        var artigo = $("#artigo").val();
+        var descricao_campos = $("#descricao_campos").val();
+        var array_descricao_campos = descricao_campos.split('\n');
+        var campos = $("#campos").val();
+        var array_campos = campos.split('\n');
+        var tipos = $("#tipos_campos").val();
+        var array_tipos = tipos.split('\n');
+
+        var html=""; 
+        html= "<h3 class='" + abreviacao + "' style='width: 100%; text-align: center;'>\n";     
+        html += "   Manutenção <span>" + titulo + "</span>\n";
+        html += "</h3>\n";
+
+        html += "<div style='text-align: center;'>\n";
+        html += "   <a href='#" + abreviacao + "_ancora_itens' class='angora'>Itens</a>\n";
+        html += "   <a href='#" + abreviacao + "_ancora_contatos' class='angora'>Contatos</a>\n";
+        html += "   <a href='#" + abreviacao + "_ancora_anexos' class='angora'>Anexos</a>\n";
+        html += "</div>\n";
+ 
+        html += "<div id='" + abreviacao+ "_inativar' style='margin: auto; padding: 10px 10px; width: 98%; background: red; text-align: center;' hidden>\n";
+        html += "   <label>Deseja desativar " + artigo + " " + titulo + "? </label>\n";
+        html += "   <button id='" + abreviacao + "_btn_inativar'>Sim</button>\n";
+        html += "   <button onclick=\\\"$('#" + abreviacao+ "_inativar').hide();\\\">Não</button>\n"
+        html += "</div>\n"  
+
+        html += "<div id='" + abreviacao + "_reativar' style='margin: auto; padding: 10px 10px; width: 98%; background: red; text-align: center;' hidden>\n";
+        html += "   <label>Deseja reativar " + artigo + " " + titulo + "? </label>\n";
+        html += "   <button id='" + abreviacao + "_btn_reativar'>Sim</button>\n";
+        html += "   <button onclick=\\\"$('#neg_reativar').hide();\\\">Não</button>\n";
+        html += "</div>\n"; 
+
+        html += "<div id='" + abreviacao + "_cancelar' style='margin: auto; padding: 10px 10px; width: 98%; background: red; text-align: center;' hidden>\n";
+        html += "   <label>Deseja cancelar " + artigo + " " + titulo + "? </label>\n";
+        html += "   <button id='" + abreviacao + "_btn_cancelar'>Sim</button>\n";
+        html += "   <button onclick=\\\"$('#" + abreviacao + "_cancelar').hide();\\\">Não</button>\n";
+        html += "</div>\n";
+
+        html += "<div id='" + abreviacao + "_ativar' style='margin: auto; padding: 10px 10px; width: 98%; background: red; text-align: center;' hidden>\n";
+        html += "   <label>Deseja estornar " + artigo + " " + titulo + "? </label>\n";
+        html += "   <button id='" + abreviacao + "_btn_ativar'>Sim</button>\n";
+        html += "   <button onclick=\\\"$('#" + abreviacao + "_ativar').hide();\\\">Não</button>\n";
+        html += "</div>\n";
+
+        html += "<div style='width: 100%; height: 300px; margin: auto;'>\n";
+        html += "   <table class='display' class='cell-border compact stripe' id='" + abreviacao + "_" + tabela + "' style='width: 98%;  font-size: 12px;'>\n";
+        html += "       <thead>\n";
+        html += "           <tr>\n";
+            for (i = 0; i < array_descricao_campos.length; i++) { 
+                html += "               <th>" + array_descricao_campos[i] + "</th>\n";
+            }
+        html += "           </tr>\n";
+        html += "       </thead>\n";
+        html += "       <tfoot>\n";
+        html += "           <tr>\n";
+            for (i = 0; i < array_descricao_campos.length; i++) { 
+                html += "               <th>" + array_descricao_campos[i] + "</th>\n";
+            }
+        html += "           </tr>\n";
+        html += "       </tfoot>\n";                
+        html += "   </table>\n";
+        html += "</div>\n";
+
+        html += "<div class='espaco'></div>\n";
+        html += "<div class='div-bloco'>\n";
+            j=0;
+            for (i = 0; i < array_descricao_campos.length; i++) { 
+                fechar = true; 
+                if(array_descricao_campos[i]){
+                    j++;
+                }
+                if(j==1){               
+                    html += "   <div class='divflex'>\n";
+                }
+                if(array_descricao_campos[i]){
+                    html += "       <div class='coluna3 direita'>\n";
+                    html += "           <label>" + array_descricao_campos[i] + ": </label>\n";
+                    html += "           <input id='" + abreviacao + "_" + array_campos[i] + "' type='" + array_tipos[i] + "'>\n";
+                    html += "       </div>\n";
+                    if( j==3 ){
+                        j=0;                
+                        html += "   </div>\n";
+                        fechar = false;
+                    }
+                }
+
+            }
+
+            if( fechar == true ){
+                if( j==1 ){
+                    html += "       <div class='coluna3 direita'></div>\n";
+                    html += "       <div class='coluna3 direita'></div>\n";
+                    html += "   </div>\n";
+                }
+                if( j==2 ){                 
+                    html += "       <div class='coluna3 direita'></div>\n";
+                    html += "   </div>\n";
+                }
+                
+            }
+
+        html += "   <div id='" + abreviacao + "_excluir' style='margin: auto; padding: 10px 10px; width: 98%; background: red; text-align: center;' hidden>\n";
+        html += "       <label>Deseja excluir " + artigo + " " + titulo + " selecionado? </label>\n";
+        html += "       <button id='" + abreviacao + "_btn_sim_excluir'>Sim</button>\n";
+        html += "       <button onclick=\"$('#" + abreviacao + "_excluir').hide();\">Não</button>\n";
+        html += "   </div>\n";
+ 
+        html += "   <div style='padding-top: 25px; text-align: right;'>\n";
+        html += "       <button id='" + abreviacao + "_btn_nova'>Novo</button>\n";
+        html += "       <button id='" + abreviacao + "_btn_gravar'>Atualizar</button>\n";
+        html += "       <button id='" + abreviacao + "_btn_excluir'>Excluir</button>\n";
+        html += "   </div>\n";
+        html += "</div>\n";
+
+
+        $("#saidaHTML").html(html);
+    });
+
+
+    $("#btnphp").on('click', '', function(e){
+        var abreviacao = $("#abreviacao").val();
+        var tabela = $("#tabela").val();
+        var campos = $("#campos").val();
+        var array_campos = campos.split('\n');
+        var tipos = $("#tipos_campos").val();
+        var chave1 = $("#chave1").val();
+        var chave2 = $("#chave2").val();
+        var chave3 = $("#chave3").val();
+        var php = "";
+
+        php += "<?php";
+        php += "    require('../acesso.php');\n";
+        php += "    $acao = $_POST['acao'];\n";
+        if(chave1){
+            
+            php += "    if( isset($_POST['" + chave1 + "']) ) {\n";
+            php += "        $" + chave1 +" = $_POST['" + chave1 + "'];\n";
+            php += "    }\n";
+
+        }else{
+            alert("Entre com a chave da tabela!");
+            $("#saidaHTML").html("");
+            return false;   
+        }
+
+        if(chave2){
+            php += "    if( isset($_POST['" + chave2 + "']) ) {\n";
+            php += "        $" + chave2 +" = $_POST['" + chave2 + "'];\n";
+            php += "    }\n";
+        }
+
+        if(chave3){
+            php += "    if( isset($_POST['" + chave3 + "']) ) {\n";
+            php += "        $" + chave3 +" = $_POST['" + chave3 + "'];\n";
+            php += "    }\n";
+        }
+
+        php += "    if ( $acao != 'E'){\n";
+            for (i = 0; i < array_campos.length; i++) {
+                if( array_campos[i].indexOf("*") == -1){
+                    if( array_campos[i] != chave1 &&  array_campos[i] != chave2 &&  array_campos[i] != chave3 ){
+                        php += "        $" + array_campos[i] +" = $_POST['" + array_campos[i] + "'];\n";
+                    }
+                }
+            }
+        php += "    }\n\n";
+
+        php += "    if( $acao == 'U'{\n";
+        php += "        $dt_atualizacao = date(\"Y-m-d H:i:s\");\n";
+
+        php += "        $data = [\n";
+            for (i = 0; i < array_campos.length; i++) {
+                php += "            '" + array_campos[i] + "' => $" + array_campos[i] + ",\n";
+            }   
+        php = php.substr(1,(php.length - 3)) + "\n"; // Tira virgula
+        php += "        ];\n";
+
+        php += "        $sql = \"UPDATE " + tabela + "\n";
+        php += "            SET\n";
+            for (i = 0; i < array_campos.length; i++) {
+                php += "                " + array_campos[i] + " = :" + array_campos[i] + ",\n";
+            }
+
+        php = php.substr(1,(php.length - 3)) + "\n"; // Tira virgula
+
+        php += "            WHERE\n";
+        php += "                " + chave1 + " = :" + chave1;
+        if( chave2 ){
+            php += " AND " + chave2 + " = :" + chave2
+        }
+        if( chave3 ){
+            php += " AND " + chave3 + " = :" + chave3
+        }
+        php += " \";\n\n";
+
+        php += "        $stmt= $db->prepare($sql);\n";
+        php += "        $stmt->execute($data);\n";
+        php += "    }\n\n";
+
+        /* Incluir */
+        php += "    if( $acao == 'I'){\n";
+        
+        if( chave1 && !chave2 && !chave3 ){
+            php += "        $stmt = $db->prepare( \"SELECT max(" + chave1 + ") + 1 AS ID FROM " + tabela + "\" );\n";
+        }else if( chave1 && chave2 && !chave3 ){
+            php += "        $stmt = $db->prepare( \"SELECT max(" + chave2 + " ) + 1 AS ID FROM " + tabela + " WHERE " + chave1 + " = \" + $" + chave1 + " );\n";
+        }else if( chave1 && chave2 && chave3 ){
+            php += "        $stmt = $db->prepare( \"SELECT max(" + chave3 + " ) + 1 AS ID FROM " + tabela + " WHERE ";
+            php += chave1 + " = \" + $" + chave1 + " ";
+            php += " \" AND " + chave2 + " = \" + $" + chave2 + " );\n";
+        }       
+            
+        php += "        $stmt->execute();\n";
+        php += "        $row = $stmt->fetch(PDO::FETCH_ASSOC);\n";
+        php += "        $nr_venda = 1;\n";
+        php += "        if ( $row['ID'] ){\n";
+        php += "            $nr_venda = $row['ID'];\n";
+        php += "        }\n";
+
+        php += "        $stmt->closeCursor();\n";
+
+        php += "        $dt_inclusao = date(\"Y-m-d H:i:s\");\n";
+
+        php += "        $data = [\n";
+            for (i = 0; i < array_campos.length; i++) {
+                php += "                '" + array_campos[i] + "' => $" + array_campos[i] + ",\n";
+            }   
+        php = php.substr(1,(php.length - 3)) + "\n"; // Tira virgula
+        php += "            ];\n\n";
+
+        php += "        $sql = \"INSERT INTO " + tabela + "(\n";
+            for (i = 0; i < array_campos.length; i++) {
+                php += "                " + array_campos[i] + ",\n";
+            }
+        php = php.substr(1,(php.length - 3)) + "\n"; // Tira virgula        
+        php += "            )VALUES ( \n";
+            for (i = 0; i < array_campos.length; i++) {
+                php += "                :" + array_campos[i] + ",\n";
+            }       
+        php = php.substr(1,(php.length - 3)) + "\n"; // Tira virgula        
+        php += "            )\";\n";
+
+        php += "        $stmt= $db->prepare($sql);\n";
+        php += "        $stmt->execute($data);\n";
+
+        php += "    }\n\n";
+
+        /* Excluir */
+        php += "    if( $acao == 'E'){\n";
+        php += "        $data = [\n";
+        php += "            '" + chave1 + "' => " + chave1 + ",\n"
+            if( chave2 ){
+                php += "            '" + chave2 + "' => " + chave2 + ",\n"
+            }   
+            if( chave3 ){
+                php += "            '" + chave3 + "' => " + chave3 + ",\n"
+            }   
+        php = php.substr(1,(php.length - 3)) + "\n"; // Tira virgula        
+
+        php += "        ];\n";
+
+        php += "        $sql = \"DELETE FROM " + tabela + " \n";
+        php += "                 WHERE\n";
+        php += "                " + chave1 + " = :" + chave1;
+            if( chave2 ){
+                php += " AND " + chave2 + " = :" + chave2;
+            }
+            if( chave3 ){
+                php += " AND " + chave3 + " = :" + chave3;
+            }
+        php += " \";\n\n";
+
+        php += "        $stmt= $db->prepare($sql);\n";
+        php += "        $stmt->execute($data);\n";
+        php += "    }\n\n";
+
+        /* Consulta */
+
+        var innerjoin = $( "#innerjoin" ).val();
+        var innercampo1 = $( "#innercampo1" ).val();
+        var innercampo2 = $( "#innercampo2" ).val();
+        var innermostrar = $( "#innermostrar" ).val();
+        var orderby = $( "#orderby").val();
+        var where = $( "#where").val();
+
+        php += "    if( $acao == 'C'){\n";
+        php += "        $sql = \"SELECT " + tabela + ".*, " + innerjoin + "." + innermostrar + "\n"; 
+        php += "            FROM " + tabela + "\n";
+        php += "            LEFT JOIN " + innerjoin + " ON " + tabela + "." + innercampo1 + " = " + innerjoin + "." + innercampo2 + "\";\n";
+        if( where ){
+            php += "        if(isset($_POST['" + where + "']) ) {\n";
+            php += "            $sql += \" WHERE " + where + " = \" + $_POST['" + where + "']; \n";
+            php += "        }\n";
+        }
+
+        if(orderby){
+            php += "        $sql += \" ORDER BY " + orderby + "\";";
+        }
+        php += "\n\n";
+        php += "        $consulta = $db->query($sql);\n";
+        php += "        $arr = $consulta->fetchall(PDO::FETCH_ASSOC);\n";
+        php += "        echo json_encode($arr);\n";
+        php += "    }\n";
+
+        $("#saidaHTML").html(php);
+
+    }); 
+
+    $("#btnjavascript").on('click', '', function(e){
+        var tabela = $("#tabela").val();
+        var chave1 = $("#chave1").val();
+        var abreviacao = $("#abreviacao").val();
+        var titulo = $("#titulo").val();
+        var artigo = $("#artigo").val();        
+        var innerjoin = $( "#innerjoin" ).val();
+        var innercampo1 = $( "#innercampo1" ).val();
+        var innercampo2 = $( "#innercampo2" ).val();
+        var innermostrar = $( "#innermostrar" ).val();
+        var orderby = $( "#orderby").val();
+        var where = $( "#where").val();
+        var campobaixado = $( "#campobaixado").val();
+        var campocancelado = $( "#campocancelado").val();
+        var colunabaixado = $( "#colunabaixado").val();
+        var colunacancelado = $( "#colunacancelado").val();
+       
+        var php = "";
+
+        php += "    var linha;\n";
+        php += "    var indice;\n";
+        php += "    var table_itens_negociacao;\n";
+        php += "    var table_anexos_negociacao;\n";
+        php += "    var table_contatos_negociacao;\n\n";
+        //$("#neg_vr_base_calculo").mask("999999.99");
+        //$("#neg_vr_unidade").mask("999999.99");
+        //$("#neg_vr_produto").mask("999999.99");
+        //$("#neg_pc_icms_credito").mask("99.99");
+        //$("#neg_pc_ipi_acrecimo").mask("99.99");
+        //$("#neg_vr_base_calculo_frete").mask("999999.99");
+        //$("#neg_vr_unidade_Frete").mask("999999.99");
+
+        php += "    $(document).ready(function() {\n\n";
+
+        php += "        $.post(\"php/consulta.php\",{\n";
+        
+        php += "            tabela: \"" + innerjoin + "\",\n";
+        php += "            where: \"\",\n";
+        php += "            codigo: \"" + innercampo2 + "\",\n";
+        php += "            descricao: \""+ innermostrar + "\",\n";
+        php += "            ordem: \"" + innermostrar + "\",\n";
+        php += "            zeros: 6\n";
+        php += "        },\n";
+        php += "        function(data){\n";
+        php += "            $(\"#" + abreviacao + "_" + innercampo2 + "_lista\").html(data)\n";
+        php += "        }).fail(function(r) {\n";
+        php += "            alert( \"error\" );\n";
+        php += "        });\n\n";
+
+        php += "        // Interação com os botões Fechar, cancelar\n";
+        php += "        $.fn.dataTable.ext.buttons.alert = {\n";
+        php += "            className: 'buttons-alert',\n";
+        php += "            action: function ( e, dt, node, config ) {\n";
+        php += "            //verifica qual botão foi clicado\n";
+        php += "            if(this.text()=='Desativar " + artigo + " " +  titulo + "'){\n";
+        php += "                if( $( '#" + abreviacao + "_" + chave1 + "') ){\n";
+        php += "                    $( '#" + abreviacao + "_inativar').show();\n";
+        php += "                }\n";
+        php += "            }\n\n";
+
+        php += "            if(this.text()=='Reativar " + artigo + " " +  titulo + "'){\n";
+        php += "                if( $( '#" + abreviacao + "_" + chave1 + "') ){\n";
+        php += "                    $( '#" + abreviacao + "_reativar').show();\n";    
+        php += "                }\n";
+        php += "            }\n\n";
+
+        php += "            if( this.text()=='Cancelar " + artigo + " " +  titulo + "' ){\n";
+        php += "                if( $( '#" + abreviacao + "_" + chave1 + "') ){\n";
+        php += "                    $( '#" + abreviacao + "_cancelar').show();\n";    
+        php += "                }\n";
+        php += "            }\n\n";
+
+        php += "            if( this.text() == 'Estornar " + artigo + " " +  titulo + "'){\n";
+        php += "                if( $( '#" + abreviacao + "_" + chave1 + "') ){\n";
+        php += "                    $( '#" + abreviacao + "_ativar').show();\n";    
+        php += "                }\n";
+        php += "            }\n";              
+        php += "        }\n";
+
+
+
+        
+        php += "        // Seleciona o código na lista\n";
+        php += "        $('#" + abreviacao + "_" + innercampo2 + "').on( 'blur', '', function (e) {\n";
+        php += "            if( $('#" + abreviacao + "_" + innercampo2 + "').val() ){\n";
+        php += "                $('#" + abreviacao + "_" + innercampo2 + "_lista').val( $('#" + abreviacao + "_" + innercampo2 + "').val() );\n";
+        php += "            }\n";
+        php += "        });\n\n";
+
+        php += "        // Atualiza o código selecionado na lista na caixa\n";
+        php += "        $('#" + abreviacao + "_" + innercampo2 + "_lista').on( 'change', '', function (e) {\n";
+        php += "            $('#" + abreviacao + "_" + innercampo2 + "').val( $('#" + abreviacao + "_" + innercampo2 + "_lista').val() );\n";
+        php += "        });\n\n";
+
+        php += "        // Usa rotina em PHP genérica para baixar \n"; 
+        php += "        $( '#btn_" + abreviacao + "_reativar' ).on( 'click', '', function (e) {\n";
+        php += "            $.post( 'setar.php',\n"; 
+        php += "            {\n";
+        php += "                tabela: '" + tabela + "',\n";
+        php += "                atualizar: '" + campobaixado + "',\n";
+        php += "                campofiltro: '" + chave1 + "',\n";
+        php += "                filtrar: linha." + chave1 + ",\n";
+        php += "                setar: false\n";
+        php += "            },\n"; 
+        php += "            function(data)\n";
+        php += "            {\n";
+        php += "                //Atualiza a célula da linha atual\n";
+        php += "                table.cell( { row: indice, column:" + colunabaixado + " } ).data('0').draw();\n";
+        php += "                table.buttons( 1 ).text( 'Desativar " + artigo + " " + titulo + "' );\n";
+        php += "                $( '#" +  abreviacao + "_reativar' ).hide();\n";
+        php += "            }).fail(function(r) {\n";
+        php += "                alert( 'error' );\n";
+        php += "        });\n";
+
+        php = "";
+        php += "        // Usa rotina em PHP genérica para baixar o pedido\n";  
+        php += "        $('#btn_" + abreviacao + "_ativar').on( 'click', '', function () {\n";
+        php += "            $.post('setar.php',\n"; 
+        php += "                {\n";   
+        php += "                    tabela: '" + tabela + "',\n";
+        php += "                    atualizar: '" + campobaixado + "',\n";
+        php += "                    campofiltro: '" + chave1 + "',\n";
+        php += "                    filtrar: linha." + chave1 + ",\n";
+        php += "                    setar: false\n";
+        php += "                },\n";
+        php += "            function(data)\n";
+        php += "            {\n";
+        php += "                //Atualiza a celula da linha atual\n";
+        php += "                table.cell({row: indice, column:" + colunacancelado + "}).data('0').draw();\n";
+        php += "                table.buttons( 2 ).text('Cancelar " + artigo + " " + titulo + "');\n";
+        php += "               $('#" +  abreviacao + "_ativar').hide();\n";
+        php += "            }).fail(function(r) {\n";
+        php += "                alert( 'error' );\n";
+        php += "            });\n";
+        php += "        });\n\n";
+
+        php += "        // Usa rotina em PHP genérica\n";  
+        php += "        $('#btn_" + abreviacao + "_cancelar').on( 'click', '', function () {\n";
+        php += "            $.post('setar.php',\n"; 
+        php += "                {\n";   
+        php += "                    tabela: '" + tabela + "',\n";
+        php += "                    atualizar: '" + campocancelado + "',\n";
+        php += "                    campofiltro: " + chave1 + ",\n";
+        php += "                    filtrar: linha." + chave1 + ",\n";
+        php += "                    setar: true\n";
+        php += "                },\n";
+        php += "                function(data)\n";
+        php += "                {\n";
+        php += "                    //Atualiza a celula da linha atual\n";
+        php += "                    table.cell( { row: indice, column:" + colunacancelado +"}).data('1').draw();\n";
+        php += "                    table.buttons( 2 ).text('Estornar " + artigo + " " + titulo + "');\n";
+        php += "                    $( '#" + abreviacao + "_cancelar' ).hide();\n";
+        php += "                }).fail(function(r) {\n";
+        php += "                    alert( 'error' );\n";
+        php += "            });\n";
+        php += "        });\n\n";
+
+        php += "        // Usa rotina em PHP genérica\n";  
+        php += "        $('#btn_" + abreviacao + "_inativar').on( 'click', '', function (e) {\n";
+        php += "            $.post('setar.php',\n"; 
+        php += "            {\n";
+        php += "                tabela: " + tabela +",\n";
+        php += "                atualizar: " + campobaixado + ",\n";
+        php += "                campofiltro: " + chave1 + ",\n";
+        php += "                filtrar: linha." + chave1 + ",\n";
+        php += "                setar: true\n";
+        php += "            },\n";
+        php += "            function(data)\n";
+        php += "            {\n";
+        php += "                //Atualiza a célula da linha atual\n";
+        php += "                table.cell({row: indice, column:" + colunabaixado + "}).data('1').draw();\n";
+        php += "                table.buttons( 1 ).text('Reativar " + artigo + " " + titulo + "');\n";
+        php += "                $('#" + abreviacao + "_inativar').hide();\n";
+        php += "            }).fail(function(r) {\n";
+        php += "                alert( 'error' );\n";
+        php += "        });\n";
+        
+
+        $("#saidaHTML").html(php);
+
+    }); 
+
+/*
+
+*/
+</script>
+
